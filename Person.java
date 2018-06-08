@@ -14,8 +14,7 @@ public class Person {
     private String email;
 
     private List<String> hobbies = new ArrayList<>();
-
-
+    
     public Person() {}
 
     public Long getId() { return id; }
