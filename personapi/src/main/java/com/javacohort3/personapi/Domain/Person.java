@@ -1,4 +1,4 @@
-package com.aermias.personAPI;
+package com.javacohort3.personapi.Domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
