@@ -9,7 +9,7 @@ public class ErrorDetail {
     private String detail;
     private long timeStamp;
     private String developerMessage;
-    Map<String, List<ValidationError>> errors;
+    private Throwable errors;
 
     public String getTitle() {
         return title;
@@ -50,7 +50,10 @@ public class ErrorDetail {
     public void setDeveloperMessage(String developerMessage) {
         this.developerMessage = developerMessage;
     }
-    public Map<String,List<ValidationError>> getErrors(){
+    public Throwable getErrors(){
         return errors;
+    }
+    public void setErrors(Throwable errors) {
+        this.errors = errors;
     }
 }
