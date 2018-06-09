@@ -1,9 +1,7 @@
 package com.javacohort3.personapi;
 
-import com.rose.demobuildingrest.domain.Person;
-import com.rose.demobuildingrest.repository.PersonRepository;
-import com.rose.demobuildingrest.service.PeronService;
-import exception.ResourceNotFoundException;
+import com.javacohort3.personapi.service.PersonService;
+import com.javacohort3.personapi.Domain.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,69 +16,83 @@ import java.util.Optional;
 @RestController
 public class PersonController {
 
-    //    Person p =
-    private PersonRepository personRepository;
+
     private static final Logger log = LoggerFactory.getLogger(SpringApplication.class);
+
     @Autowired
-    private PeronService peronService;
+    private PersonService personService;
 
     protected void verifyID(Long id) throws ResourceNotFoundException {
-        Person person = personRepository.findById(id).orElse(null);
-        if (person == null) {
-            throw new ResourceNotFoundException("Person with id " + id + " not found");
+
+        if(personService.verifyPerson(id) == null) {
+            throw new ResourceNotFoundException("Person with id: " +
+                    id + ", is not found. Please try again");
         }
     }
 
+
+
     @RequestMapping("/people")
-    public List<Person> getPersonList() {
-        return peronService.getPersonList();
+    public ResponseEntity<?> getPersonList() {
+       List p = personService.getPersonList();
+
+       log.info("GET ALL:  " + p);
+       return new ResponseEntity<>(p, HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/people", method = RequestMethod.POST)
     public ResponseEntity<?> createPerson(@RequestBody Person person) {
-        Person p = peronService.createPerson(person);
+        Person p = personService.createPerson(person);
+
+        log.info("Person CREATED " + p);
         return new ResponseEntity<>(p,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deletePerson(@PathVariable Long id) {
-        verifyID(id);
-        peronService.deletePerson(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getPerson(@PathVariable Long id) throws ResourceNotFoundException {
-        verifyID(id);
-        Person person = peronService.getPerson(id);
-
+    public ResponseEntity<?> getPerson(@PathVariable Long id) {
+        Person person = personService.getPerson(id);
 
         if (person.getId() == id) {
+            log.info("'GETTING': " + person);
             return new ResponseEntity<>(person, HttpStatus.OK);
-        }
-//            if (person.getId() != id) {
-//                throw new ResourceNotFoundException("Person not found");
-//            }
-        else {
+        } else {
+            log.info("Could Not Find a person with id: " + id);
             return new ResponseEntity<>(person, HttpStatus.NOT_FOUND);
         }
-
     }
-
 
 
     @RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updatePerson(@RequestBody Person person) {
-        Person p2 = peronService.getPerson(person.getId());
-        Person p = peronService.updatePerson(person);
+    public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
+        log.info("Verifying");
+        verifyID(id);
 
+        Person p2 = personService.getPerson(person.getId());
+        Person p = personService.updatePerson(person);
 
         if (p2 == p) {
+            log.info("Person UPDATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
+            log.info("Person CREATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.CREATED);
-
         }
-//        log.info(.toString());
     }
+
+
+    @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletePerson(@PathVariable Long id) {
+        log.info("Verifying");
+        verifyID(id);
+
+        personService.deletePerson(id);
+        Person p = personService.getPerson(id);
+
+        log.info("Person DELETED: " + p);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 }
