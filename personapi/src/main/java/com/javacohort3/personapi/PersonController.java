@@ -22,6 +22,14 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    protected void verifyID(Long id) throws ResourceNotFoundException {
+
+        if(personService.verifyPerson(id) == null) {
+            throw new ResourceNotFoundException("Person with id: " +
+                    id + ", is not found. Please try again");
+        }
+    }
+
 
 
     @RequestMapping("/people")
@@ -47,10 +55,10 @@ public class PersonController {
         Person person = personService.getPerson(id);
 
         if (person.getId() == id) {
-            log.info("'GOT' one: " + personService.getPerson(id));
+            log.info("'GETTING': " + person);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
-            log.info("Could Not Find a person with this id");
+            log.info("Could Not Find a person with id: " + id);
             return new ResponseEntity<>(person, HttpStatus.NOT_FOUND);
         }
     }
@@ -58,14 +66,17 @@ public class PersonController {
 
     @RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
+        log.info("Verifying");
+        verifyID(id);
+
         Person p2 = personService.getPerson(person.getId());
         Person p = personService.updatePerson(person);
 
         if (p2 == p) {
-            log.info("Person UPDATED : " + getPerson(id));
+            log.info("Person UPDATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
-            log.info("Person CREATED: " + getPerson(id));
+            log.info("Person CREATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.CREATED);
         }
     }
@@ -73,9 +84,13 @@ public class PersonController {
 
     @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
-        personService.deletePerson(id);
+        log.info("Verifying");
+        verifyID(id);
 
-        log.info("Person DELETD: " + getPerson(id));
+        personService.deletePerson(id);
+        Person p = personService.getPerson(id);
+
+        log.info("Person DELETED: " + p);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
