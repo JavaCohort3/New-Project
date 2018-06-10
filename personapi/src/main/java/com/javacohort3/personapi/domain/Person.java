@@ -1,4 +1,4 @@
-package com.javacohort3.personapi.Domain;
+package com.javacohort3.personapi.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;

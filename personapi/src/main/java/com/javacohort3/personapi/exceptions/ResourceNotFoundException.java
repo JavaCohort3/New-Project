@@ -1,4 +1,4 @@
-package com.javacohort3.personapi.Domain.Exceptions;
+package com.javacohort3.personapi.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException() {}
