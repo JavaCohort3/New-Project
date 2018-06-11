@@ -7,10 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -44,7 +47,13 @@ public class PersonController {
     @RequestMapping(value = "/people", method = RequestMethod.POST)
     public ResponseEntity<?> createPerson(@RequestBody Person person) {
         Person p = personService.createPerson(person);
-
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newPersonURI = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(p.getId())
+                .toUri();
+        responseHeaders.setLocation(newPersonURI);
         log.info("Person CREATED " + p);
         return new ResponseEntity<>(p,HttpStatus.OK);
     }
