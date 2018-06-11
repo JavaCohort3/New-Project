@@ -24,7 +24,7 @@ public class PersonController {
 
     protected void verifyID(Long id) throws ResourceNotFoundException {
         personService.getPerson(id);
-        if(personService.verifyPerson(id) == null) {
+        if(personService.verifyPersonById(id) == null) {
             throw new ResourceNotFoundException("Person with id: " +
                     id + ", is not found. Please try again");
         }
@@ -87,7 +87,7 @@ public class PersonController {
     @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
         log.info("Verifying");
-        personService.verifyPerson(id);
+        personService.verifyPersonById(id);
         personService.deletePerson(id);
         log.info("Person DELETED");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
