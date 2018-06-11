@@ -1,4 +1,4 @@
-package com.javacohort3.personapi;
+package com.javacohort3.personapi.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
