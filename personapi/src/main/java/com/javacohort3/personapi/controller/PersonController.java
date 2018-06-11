@@ -18,7 +18,7 @@ public class PersonController {
     private PersonService personService;
 
     @Autowired
-    public PersonController(PersonService personService) { this.personService = personService; }
+    public PersonController() { this.personService = new PersonService(); }
 
     // Create
     @RequestMapping(value = "/people", method = RequestMethod.POST)
