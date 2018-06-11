@@ -1,5 +1,6 @@
 package com.javacohort3.personapi.exceptions;
 
+import com.javacohort3.personapi.domain.ErrorDetail;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
