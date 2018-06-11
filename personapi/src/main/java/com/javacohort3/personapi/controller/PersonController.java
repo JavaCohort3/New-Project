@@ -23,7 +23,7 @@ public class PersonController {
     private PersonService personService;
 
     protected void verifyID(Long id) throws ResourceNotFoundException {
-
+        personService.getPerson(id);
         if(personService.verifyPerson(id) == null) {
             throw new ResourceNotFoundException("Person with id: " +
                     id + ", is not found. Please try again");
@@ -46,7 +46,7 @@ public class PersonController {
         Person p = personService.createPerson(person);
 
         log.info("Person CREATED " + p);
-        return new ResponseEntity<>(p,HttpStatus.OK);
+        return new ResponseEntity<>(p,HttpStatus.CREATED);
     }
 
 
@@ -66,13 +66,15 @@ public class PersonController {
 
     @RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
-        log.info("Verifying");
-        verifyID(id);
+
+
 
         Person p2 = personService.getPerson(person.getId());
         Person p = personService.updatePerson(person);
 
         if (p2 == p) {
+            log.info("Verifying");
+            verifyID(id);
             log.info("Person UPDATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
@@ -85,12 +87,9 @@ public class PersonController {
     @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
         log.info("Verifying");
-        verifyID(id);
-
+        personService.verifyPerson(id);
         personService.deletePerson(id);
-        Person p = personService.getPerson(id);
-
-        log.info("Person DELETED: " + p);
+        log.info("Person DELETED");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
