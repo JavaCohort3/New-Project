@@ -18,7 +18,7 @@ public class PersonService {
         return personRepository.findById(id).orElse(null);
     }
 
-    public Person verifyPersonByEmail(String email) { // need the throws exception to add between long id and bracket
+    public Person verifyPersonByEmail(String email) {
         for (Person p : personRepository.findAll()) {
             if (p.getEmail().equals(email)) {
                 return p;

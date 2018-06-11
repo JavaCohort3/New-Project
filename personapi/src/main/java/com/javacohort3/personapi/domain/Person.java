@@ -38,6 +38,8 @@ public class Person {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", hobbies=" + hobbies +
                 '}';
     }
 }

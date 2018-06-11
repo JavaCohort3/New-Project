@@ -6,10 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,64 +22,90 @@ public class PersonController {
     private PersonService personService;
 
     @Autowired
-    public PersonController() { this.personService = new PersonService(); }
+    public PersonController(PersonService personService) { this.personService = personService; }
 
     // Create
     @RequestMapping(value = "/people", method = RequestMethod.POST)
-    public ResponseEntity<?> createPerson(@RequestBody Person person) {
+    public ResponseEntity<?> createPerson(@RequestBody @Valid Person person) {
+        HttpStatus status = HttpStatus.CREATED;
         Person p = personService.createPerson(person);
 
-        log.info("Person CREATED " + p);
-        return new ResponseEntity<>(p,HttpStatus.CREATED);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        URI newUri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(p.getId())
+                .toUri();
+
+        httpHeaders.setLocation(newUri);
+
+        log.info("[POST] " + p);
+        return new ResponseEntity<>(p, httpHeaders, status);
     }
 
     // Get One
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getPerson(@PathVariable Long id) {
+        HttpStatus status;
         Person person = personService.getPerson(id);
+        personService.verifyPersonById(id);
 
-        if (person.getId().equals(id)) {
-            log.info("'GETTING': " + person);
-            return new ResponseEntity<>(person, HttpStatus.OK);
+        if (person != null) {
+            // person does exist
+            log.info("[GET] " + person);
+            status = HttpStatus.OK;
         } else {
-            log.info("Could Not Find a person with id: " + id);
-            return new ResponseEntity<>(person, HttpStatus.NOT_FOUND);
+            // person does not exist
+            log.info("[GET-FAILED] " + id);
+            status = HttpStatus.NOT_FOUND;
         }
+
+        return new ResponseEntity<>(person, status);
     }
 
     // Get All
     @RequestMapping(value = "/people", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonList() {
-       List p = personService.getPersonList();
+        log.info("its ya boi");
+        HttpStatus status = HttpStatus.OK;
 
-       log.info("GET ALL:  " + p);
-       return new ResponseEntity<>(p, HttpStatus.OK);
+        List<Person> people = personService.getPersonList();
+
+       log.info("[GET] " + people);
+       return new ResponseEntity<>(people, status);
     }
 
     // Update
     @RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
-        Person p2 = personService.getPerson(person.getId());
-        Person p = personService.updatePerson(person);
+        HttpStatus status;
 
-        if (p2 == p) {
-            log.info("Verifying");
-            personService.verifyPersonById(id);
-            log.info("Person UPDATED: " + p2);
-            return new ResponseEntity<>(person, HttpStatus.OK);
+        Person old_value = personService.getPerson(id);
+        personService.updatePerson(person);
+
+        if (old_value != null) {
+            // person did exist prior
+            log.info("[PUT-CREATED] " + person);
+            status = HttpStatus.OK;
         } else {
-            log.info("Person CREATED: " + p2);
-            return new ResponseEntity<>(person, HttpStatus.CREATED);
+            // person did not exist prior
+            log.info("[PUT-UPDATE] " + person);
+            status = HttpStatus.CREATED;
         }
+
+        return new ResponseEntity<>(person, status);
     }
 
     // Delete
     @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
-        log.info("Verifying");
+        HttpStatus status = HttpStatus.NO_CONTENT;
+        Person person = personService.getPerson(id);
+
         personService.verifyPersonById(id);
         personService.deletePerson(id);
-        log.info("Person DELETED");
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        log.info("[DELETE] Deleted ID-" + id);
+
+        return new ResponseEntity<>(person, status);
     }
 }

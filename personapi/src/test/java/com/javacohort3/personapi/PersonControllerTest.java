@@ -38,7 +38,7 @@ public class PersonControllerTest {
 
     @Test
     public void testGetPersonList(){
-        PersonController controller = new PersonController();
+        PersonController controller = new PersonController(new PersonService());
         ReflectionTestUtils.setField(controller,"personService",personService);
         when(personService.getPersonList()).thenReturn(new ArrayList<>());
         ResponseEntity<?> personList = controller.getPersonList();
@@ -49,7 +49,7 @@ public class PersonControllerTest {
 
     @Test
     public void updatePerson(){
-        PersonController controller = new PersonController();
+        PersonController controller = new PersonController(new PersonService());
         Person person = new Person();
         ReflectionTestUtils.setField(controller,"personService",personService);
         when(personService.updatePerson(person)).thenReturn(person);
@@ -61,7 +61,7 @@ public class PersonControllerTest {
 
     @Test
     public void createPerson(){
-        PersonController controller = new PersonController();
+        PersonController controller = new PersonController(new PersonService());
         Person person = new Person();
         ReflectionTestUtils.setField(controller,"personService",personService);
         when(personService.createPerson(person)).thenReturn(new Person());
@@ -73,7 +73,7 @@ public class PersonControllerTest {
 
     @Test
     public void getPerson(){
-        PersonController controller = new PersonController();
+        PersonController controller = new PersonController(new PersonService());
         Person person = new Person();
         ReflectionTestUtils.setField(controller,"personService",personService);
         when(personService.getPerson(person.getId())).thenReturn(person);
@@ -84,7 +84,7 @@ public class PersonControllerTest {
 
     @Test
     public void deletePerson(){
-        PersonController controller = new PersonController();
+        PersonController controller = new PersonController(new PersonService());
         Person person = new Person();
         ReflectionTestUtils.setField(controller,"personService",personService);
         when(personService.deletePerson(person.getId())).thenReturn(new ArrayList<>());
