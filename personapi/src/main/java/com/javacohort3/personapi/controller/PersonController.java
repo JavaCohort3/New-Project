@@ -1,5 +1,6 @@
 package com.javacohort3.personapi.controller;
 
+import com.javacohort3.personapi.exceptions.ResourceNotFoundException;
 import com.javacohort3.personapi.service.PersonService;
 import com.javacohort3.personapi.domain.Person;
 import org.slf4j.Logger;
@@ -14,13 +15,32 @@ import java.util.List;
 
 @RestController
 public class PersonController {
+
+
     private static final Logger log = LoggerFactory.getLogger(SpringApplication.class);
-    private PersonService personService;
 
     @Autowired
-    public PersonController(PersonService personService) { this.personService = personService; }
+    private PersonService personService;
 
-    // Create
+    protected void verifyID(Long id) throws ResourceNotFoundException {
+        personService.getPerson(id);
+        if(personService.verifyPersonById(id) == null) {
+            throw new ResourceNotFoundException("Person with id: " +
+                    id + ", is not found. Please try again");
+        }
+    }
+
+
+
+    @RequestMapping("/people")
+    public ResponseEntity<?> getPersonList() {
+       List p = personService.getPersonList();
+
+       log.info("GET ALL:  " + p);
+       return new ResponseEntity<>(p, HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/people", method = RequestMethod.POST)
     public ResponseEntity<?> createPerson(@RequestBody Person person) {
         Person p = personService.createPerson(person);
@@ -29,12 +49,12 @@ public class PersonController {
         return new ResponseEntity<>(p,HttpStatus.CREATED);
     }
 
-    // Get One
+
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getPerson(@PathVariable Long id) {
         Person person = personService.getPerson(id);
 
-        if (person.getId().equals(id)) {
+        if (person.getId() == id) {
             log.info("'GETTING': " + person);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
@@ -43,24 +63,18 @@ public class PersonController {
         }
     }
 
-    // Get All
-    @RequestMapping(value = "/people", method = RequestMethod.GET)
-    public ResponseEntity<?> getPersonList() {
-       List p = personService.getPersonList();
 
-       log.info("GET ALL:  " + p);
-       return new ResponseEntity<>(p, HttpStatus.OK);
-    }
-
-    // Update
     @RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
+
+
+
         Person p2 = personService.getPerson(person.getId());
         Person p = personService.updatePerson(person);
 
         if (p2 == p) {
             log.info("Verifying");
-            personService.verifyPersonById(id);
+            verifyID(id);
             log.info("Person UPDATED: " + p2);
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
@@ -69,7 +83,7 @@ public class PersonController {
         }
     }
 
-    // Delete
+
     @RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
         log.info("Verifying");
@@ -78,4 +92,6 @@ public class PersonController {
         log.info("Person DELETED");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
 }
