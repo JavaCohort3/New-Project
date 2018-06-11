@@ -47,7 +47,9 @@ public class PersonService {
     }
 
 
-    public void deletePerson(Long id) {
+    public List<Person> deletePerson(Long id) {
         personRepository.deleteById(id);
+        return getPersonList();
     }
+
 }
