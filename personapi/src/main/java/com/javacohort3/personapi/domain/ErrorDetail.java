@@ -54,4 +54,16 @@ public class ErrorDetail {
     public void setErrors(Throwable errors) {
         this.errors = errors;
     }
+
+    @Override
+    public String toString() {
+        return "ErrorDetail{" +
+                "title='" + title + '\'' +
+                ", status=" + status +
+                ", detail='" + detail + '\'' +
+                ", timeStamp=" + timeStamp +
+                ", developerMessage='" + developerMessage + '\'' +
+                ", errors=" + errors +
+                '}';
+    }
 }
