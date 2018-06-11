@@ -24,7 +24,7 @@ public class PersonController {
 
     protected void verifyID(Long id) throws ResourceNotFoundException {
 
-        if(personService.verifyPerson(id) == null) {
+        if(personService.verifyPersonById(id) == null) {
             throw new ResourceNotFoundException("Person with id: " +
                     id + ", is not found. Please try again");
         }
