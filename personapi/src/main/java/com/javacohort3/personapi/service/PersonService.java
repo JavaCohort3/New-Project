@@ -2,18 +2,15 @@ package com.javacohort3.personapi.service;
 
 
 
-import com.javacohort3.personapi.Domain.Person;
+import com.javacohort3.personapi.domain.Person;
+import com.javacohort3.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
-// add import for exception package should look like:
-//    import com.javacohort3.personapi.exception.*; TODO MAKE SURE:
-//    the import is the folder structure we made because it wont do it automatically
-//    It will take a whole other import automatically instead of the one we want do
-//    the same with PersonRepository: import com.javacohort3.personapi.repo.*;
+
 
 @Service
 public class PersonService {
@@ -23,7 +20,7 @@ public class PersonService {
 
 
     public Person verifyPerson(Long id) { // need the throws exception to add between long id and bracket
-        return personRepository.findOne(id);
+        return personRepository.findById(id).orElse(null);
     }
 
 
@@ -41,7 +38,7 @@ public class PersonService {
 
 
     public Person getPerson(Long id) {
-        return personRepository.findOne(id);
+        return personRepository.findById(id).orElse(null);
     }
 
 
@@ -51,6 +48,6 @@ public class PersonService {
 
 
     public void deletePerson(Long id) {
-        personRepository.delete(id);
+        personRepository.deleteById(id);
     }
 }
