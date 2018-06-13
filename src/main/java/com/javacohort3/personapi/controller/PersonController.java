@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -50,33 +51,33 @@ public class PersonController {
         Object response;
         Person person = personService.getPerson(id);
 
+        // throw error if (person == null)
         personService.verifyPersonById(id);
 
-        if (person != null) {
-            // person does exist
-            log.info("[GET] " + person);
-            status = HttpStatus.OK;
-            response = person;
-        } else {
-            // person does not exist
-            log.info("[GET-FAILED] ID-" + id);
-            status = HttpStatus.NOT_FOUND;
-            response = "Person with ID " + id + " does not exist.";
-        }
+        // person does exist
+        log.info("[GET] " + person);
+        status = HttpStatus.OK;
+        response = person;
+
 
         return new ResponseEntity<>(response, status);
     }
 
     // Get One (via Email)
-    @RequestMapping(value = "/people")
-    public ResponseEntity<?> getPersonByEmail(@RequestParam(value="email") String query) {
-        HttpStatus status = HttpStatus.NOT_FOUND;
+    @RequestMapping(value = "/people/emails")
+    public ResponseEntity<?> getPersonByEmail(HttpServletRequest request, @RequestParam(value="email") String query) {
+        HttpStatus status;
+        Person person = personService.getPersonByEmail(query);
+
+        log.info("[QUERY] " + request.getQueryString());
+
         personService.verifyPersonByEmail(query);
 
-        // Person person = personService.getPerson()
-        // log.info("[GET] " + person);
+        // person with email exists
+        status = HttpStatus.OK;
+        log.info("[GET] " + person);
 
-        return new ResponseEntity<>("", status);
+        return new ResponseEntity<>(person, status);
     }
 
     // Get One (Hobbies)
@@ -88,17 +89,10 @@ public class PersonController {
 
         personService.verifyPersonById(id);
 
-        if (person != null) {
-            // person does exist
-            log.info("[GET] " + person.getHobbies());
-            status = HttpStatus.OK;
-            response = person.getHobbies();
-        } else {
-            // person does not exist
-            log.info("[GET-FAILED] ID-" + id);
-            status = HttpStatus.NOT_FOUND;
-            response = "Person with ID " + id + " does not exist.";
-        }
+        // person does exist
+        log.info("[GET] " + person.getHobbies());
+        status = HttpStatus.OK;
+        response = person.getHobbies();
 
         return new ResponseEntity<>(response, status);
     }
@@ -124,11 +118,11 @@ public class PersonController {
 
         if (old_value != null) {
             // person did exist prior
-            log.info("[PUT-CREATED] " + person);
+            log.info("[PUT-UPDATE] " + person);
             status = HttpStatus.OK;
         } else {
             // person did not exist prior
-            log.info("[PUT-UPDATE] " + person);
+            log.info("[PUT-CREATED] " + person);
             status = HttpStatus.CREATED;
         }
 

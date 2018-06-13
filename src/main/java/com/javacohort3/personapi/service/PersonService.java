@@ -37,10 +37,20 @@ public class PersonService {
         return personRepository.findOne(id);
     }
 
-    public List<String> getPersonHobbies(Long id) {
-        Person person = personRepository.findOne(id);
-        return person.getHobbies();
+    public Person getPersonByEmail(String email) {
+        for (Person p : personRepository.findAll()) {
+            if (p.getEmail().equals(email)) {
+                return p;
+            }
+        }
+
+        return null;
     }
+
+//    public List<String> getPersonHobbies(Long id) {
+//        Person person = personRepository.findOne(id);
+//        return person.getHobbies();
+//    }
 
     public List<Person> getPersonList() {
         List<Person> people = new ArrayList<>();
