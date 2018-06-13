@@ -67,17 +67,7 @@ public class PersonController {
         return new ResponseEntity<>(response, status);
     }
 
-    // Get One (via Email)
-    @RequestMapping(value = "/people")
-    public ResponseEntity<?> getPersonByEmail(@RequestParam(value="email") String query) {
-        HttpStatus status = HttpStatus.NOT_FOUND;
-        personService.verifyPersonByEmail(query);
-
-        // Person person = personService.getPerson()
-        // log.info("[GET] " + person);
-
-        return new ResponseEntity<>("", status);
-    }
+    // Get One (by Email)
 
     // Get One (Hobbies)
     @RequestMapping(value = "/people/{id}/hobbies", method = RequestMethod.GET)
