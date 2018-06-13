@@ -1,7 +1,7 @@
 package com.javacohort3.personapi.controller;
 
 import com.javacohort3.personapi.service.PersonService;
-import com.javacohort3.personapi.domain.Person;
+import com.javacohort3.personapi.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PersonController {
 
     // Create
     @RequestMapping(value = "/people", method = RequestMethod.POST)
-    public ResponseEntity<?> createPerson(@RequestBody @Valid Person person) {
+    public ResponseEntity<?> createPerson(@RequestBody Person person) {
         HttpStatus status = HttpStatus.CREATED;
         Person p = personService.createPerson(person);
 
@@ -47,26 +47,67 @@ public class PersonController {
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getPerson(@PathVariable Long id) {
         HttpStatus status;
+        Object response;
         Person person = personService.getPerson(id);
+
         personService.verifyPersonById(id);
 
         if (person != null) {
             // person does exist
             log.info("[GET] " + person);
             status = HttpStatus.OK;
+            response = person;
         } else {
             // person does not exist
-            log.info("[GET-FAILED] " + id);
+            log.info("[GET-FAILED] ID-" + id);
             status = HttpStatus.NOT_FOUND;
+            response = "Person with ID " + id + " does not exist.";
         }
 
-        return new ResponseEntity<>(person, status);
+        return new ResponseEntity<>(response, status);
+    }
+
+    // Get One (via Email)
+    @RequestMapping(value = "/people")
+    public ResponseEntity<?> getPersonByEmail(@RequestParam(value="email") String query) {
+        HttpStatus status;
+
+        personService.verifyPersonByEmail(query);
+
+        Person person = personService.getPerson()
+
+        log.info("[GET] " + );
+
+        return new ResponseEntity<>(response, status);
+    }
+
+    // Get One (Hobbies)
+    @RequestMapping(value = "/people/{id}/hobbies", method = RequestMethod.GET)
+    public ResponseEntity<?> getPersonHobbies(@PathVariable Long id) {
+        HttpStatus status;
+        Object response;
+        Person person = personService.getPerson(id);
+
+        personService.verifyPersonById(id);
+
+        if (person != null) {
+            // person does exist
+            log.info("[GET] " + person.getHobbies());
+            status = HttpStatus.OK;
+            response = person.getHobbies();
+        } else {
+            // person does not exist
+            log.info("[GET-FAILED] ID-" + id);
+            status = HttpStatus.NOT_FOUND;
+            response = "Person with ID " + id + " does not exist.";
+        }
+
+        return new ResponseEntity<>(response, status);
     }
 
     // Get All
     @RequestMapping(value = "/people", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonList() {
-        log.info("its ya boi");
         HttpStatus status = HttpStatus.OK;
 
         List<Person> people = personService.getPersonList();

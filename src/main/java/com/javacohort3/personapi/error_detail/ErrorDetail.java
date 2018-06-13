@@ -1,4 +1,4 @@
-package com.javacohort3.personapi.domain;
+package com.javacohort3.personapi.error_detail;
 
 public class ErrorDetail {
     private String title;
