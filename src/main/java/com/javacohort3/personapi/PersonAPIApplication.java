@@ -1,4 +1,4 @@
-package com.javacohort3.personapi.application;
+package com.javacohort3.personapi;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.SpringApplication;

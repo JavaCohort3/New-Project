@@ -1,19 +1,18 @@
-package com.javacohort3.personapi.domain;
+package com.javacohort3.personapi;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Person {
     @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
 
-    private List<String> hobbies = new ArrayList<>();
+    private ArrayList<String> hobbies = new ArrayList<>();
     
     public Person() {}
 
@@ -29,8 +28,8 @@ public class Person {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public List<String> getHobbies() { return hobbies; }
-    public void setHobbies(List<String> hobbies) { this.hobbies = hobbies; }
+    public ArrayList<String> getHobbies() { return hobbies; }
+    public void setHobbies(ArrayList<String> hobbies) { this.hobbies = hobbies; }
 
     @Override
     public String toString() {

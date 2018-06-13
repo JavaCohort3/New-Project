@@ -1,7 +1,6 @@
 package com.javacohort3.personapi;
 
 import com.javacohort3.personapi.controller.PersonController;
-import com.javacohort3.personapi.domain.Person;
 import com.javacohort3.personapi.service.PersonService;
 import org.assertj.core.util.Lists;
 import org.junit.Assert;
@@ -82,15 +81,15 @@ public class PersonControllerTest {
         Assert.assertEquals(HttpStatus.OK,getPerson.getStatusCode());
     }
 
-    @Test
-    public void deletePerson(){
-        PersonController controller = new PersonController(new PersonService());
-        Person person = new Person();
-        ReflectionTestUtils.setField(controller,"personService",personService);
-        when(personService.deletePerson(person.getId())).thenReturn(new ArrayList<>());
-        ResponseEntity<?> deletePerson = controller.deletePerson(person.getId());
-        verify(personService,times(1)).deletePerson(person.getId());
-        Assert.assertEquals(HttpStatus.NO_CONTENT,deletePerson.getStatusCode());
-    }
+//    @Test
+//    public void deletePerson(){
+//        PersonController controller = new PersonController(new PersonService());
+//        Person person = new Person();
+//        ReflectionTestUtils.setField(controller,"personService",personService);
+//        when(personService.deletePerson(person.getId())).thenReturn(new ArrayList<>());
+//        ResponseEntity<?> deletePerson = controller.deletePerson(person.getId());
+//        verify(personService,times(1)).deletePerson(person.getId());
+//        Assert.assertEquals(HttpStatus.NO_CONTENT,deletePerson.getStatusCode());
+//    }
 
 }
