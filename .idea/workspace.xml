@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dda5ae8-7fed-4e36-aadf-d13af5f195e0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Person-API.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/application/PersonAPIApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/controller/PersonController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/domain/ErrorDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/domain/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/exceptions/ResourceNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/exceptions/RestExpectionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/repository/PersonRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/service/PersonService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/test/java/com/javacohort3/personapi/PersonControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/personapi/src/test/java/com/javacohort3/personapi/PersonapiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/controller/PersonController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,16 +53,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PersonController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/controller/PersonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
+            <state relative-caret-position="245">
+              <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/service/PersonService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -370,17 +348,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/controller/PersonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/service/PersonService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/controller/PersonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
         </state>
       </provider>
     </entry>
