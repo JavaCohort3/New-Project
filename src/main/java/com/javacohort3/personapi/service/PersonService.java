@@ -1,6 +1,6 @@
 package com.javacohort3.personapi.service;
 
-import com.javacohort3.personapi.Person;
+import com.javacohort3.personapi.domain.Person;
 import com.javacohort3.personapi.exceptions.ResourceNotFoundException;
 import com.javacohort3.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,14 @@ import java.util.List;
 
 @Service
 public class PersonService {
-    @Autowired
     private PersonRepository personRepository;
 
-    public void verifyPersonById(Long id) { // need the throws exception to add between long id and bracket
+    @Autowired
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
+    public void verifyPersonById(Long id) {
         if (personRepository.findOne(id) == null) throw new ResourceNotFoundException();
     }
 
@@ -37,7 +41,9 @@ public class PersonService {
         return personRepository.findOne(id);
     }
 
-    public Person getPersonByEmail(String email) {
+    public Person findPersonByEmail(String email) {
+        personRepository.findPersonByEmail(email);
+        personRepository.verifyPersonByEmail(email);
         for (Person p : personRepository.findAll()) {
             if (p.getEmail().equals(email)) {
                 return p;
@@ -47,10 +53,10 @@ public class PersonService {
         return null;
     }
 
-//    public List<String> getPersonHobbies(Long id) {
-//        Person person = personRepository.findOne(id);
-//        return person.getHobbies();
-//    }
+    public List<String> getPersonHobbies(Long id) {
+        Person person = personRepository.findOne(id);
+        return person.getHobbies();
+    }
 
     public List<Person> getPersonList() {
         List<Person> people = new ArrayList<>();
