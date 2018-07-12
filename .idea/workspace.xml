@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c84814c5-64ec-498e-86fd-a671fd859c02" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Person-API-Angular/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Person-API-Angular/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Person-API-Angular/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Person-API-Angular/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Person-API-Angular/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Person-API-Angular/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person-API-Angular/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Person-API-Angular/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,14 +57,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="person.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="person.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Person-API-Angular/src/app/service/person.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="5">
               <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Person-API-Angular/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -132,6 +138,7 @@
         <option value="$PROJECT_DIR$/.idea/.name" />
         <option value="$PROJECT_DIR$/Person-API-Angular/tsconfig.json" />
         <option value="$PROJECT_DIR$/Person-API-Angular/src/app/service/person.service.ts" />
+        <option value="$PROJECT_DIR$/Person-API-Angular/.gitignore" />
       </list>
     </option>
   </component>
@@ -156,7 +163,7 @@
       <path value="$PROJECT_DIR$/Person-API-Angular/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="981" />
@@ -394,7 +401,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528839380215</updated>
-      <workItem from="1531373776996" duration="7057000" />
+      <workItem from="1531373776996" duration="9011000" />
     </task>
     <servers />
   </component>
@@ -431,7 +438,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7057000" />
+    <option name="totallyTimeSpent" value="9011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -444,6 +451,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -464,10 +472,10 @@
       <window_info anchor="bottom" id="Java Enterprise" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32888147" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.31847134" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.3305785" />
       <window_info anchor="bottom" id="Spring" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.41652894" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2582996" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3272727" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.2582996" />
       <window_info anchor="right" id="Bean Validation" />
       <window_info id="Web" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -572,7 +580,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/personapi/src/main/java/com/javacohort3/personapi/domain/Person.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javacohort3/personapi/exceptions/ResourceNotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -820,11 +827,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Person-API-Angular/src/app/service/person.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="5">
           <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Person-API-Angular/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
         </state>
       </provider>
     </entry>
