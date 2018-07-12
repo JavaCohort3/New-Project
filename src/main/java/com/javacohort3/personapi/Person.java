@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 @Entity
 public class Person {
-    @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
