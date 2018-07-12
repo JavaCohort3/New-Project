@@ -29,7 +29,7 @@ export class PersonService {
   }
 
   // delete method
-  delete(id: string) {
+  delete(id: string): void {
     this.http.delete(`${this.api}/${id}`);
   }
 }
