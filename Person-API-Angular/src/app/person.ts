@@ -3,7 +3,7 @@ export class Person{
     firstName: string;
     lastName: string;
     email: string;
-    hobbies: String[];
+    hobbies: string[];
 
     constructor(
         id: number,
