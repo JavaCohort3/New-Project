@@ -1,0 +1,17 @@
+#container {
+  display: inline-block;
+  padding: 10px;
+}
+
+#container > * { text-align: center; }
+#container > *:not(h2) { margin: 10px 0; }
+
+#person-list > div {
+  display: inline-block;
+  border: 1px solid;
+  padding: 10px;
+}
+
+#person-list > div:empty:after {
+  content: 'No people are stored in the database.';
+}
