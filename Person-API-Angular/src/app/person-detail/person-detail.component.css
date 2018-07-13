@@ -1,0 +1,46 @@
+/*label {*/
+  /*display: inline-block;*/
+  /*width: 3em;*/
+  /*margin: .5em 0;*/
+  /*color: rgb(103, 255, 247);*/
+  /*font-weight: bold;*/
+/*}*/
+/*input {*/
+  /*color: rgb(0, 0, 0);*/
+  /*height: 2em;*/
+  /*font-size: 1em;*/
+  /*padding-left: .4em;*/
+/*}*/
+/*button {*/
+  /*margin-top: 20px;*/
+  /*font-family: Arial;*/
+  /*color: rgb(46, 0, 88);*/
+  /*background-color: rgb(238, 238, 238);*/
+  /*border: none;*/
+  /*padding: 5px 10px;*/
+  /*border-radius: 4px;*/
+  /*cursor: pointer; cursor: hand;*/
+/*}*/
+
+
+/*button:hover {*/
+  /*color: rgb(62, 255, 239);*/
+  /*background-color: #11005f;*/
+/*}*/
+
+
+/*button:disabled {*/
+  /*background-color: #eee;*/
+  /*color: #ccc;*/
+  /*cursor: auto;*/
+/*}*/
+
+/*h2 {*/
+  /*color: #65e8ff;*/
+  /*font-weight: bold;*/
+/*}*/
+
+/*.id {*/
+  /*color: #65e8ff;*/
+/*}*/
+

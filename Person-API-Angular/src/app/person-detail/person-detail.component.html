@@ -1,0 +1,28 @@
+<!-- <p>
+  person-detail works!
+</p> -->
+
+<div *ngIf="person">
+  <div>
+    <h1 class="title">DETAILS For <span>Id: </span>{{person.id}}</h1>
+  </div>
+
+
+  <!--<div><span>id: </span>{{person.id}}</div>-->
+
+  <h2>{{person.firstName + ' ' + person.lastName}}</h2> <br/>
+  <!-- <h2>{{person.lastName}} Details</h2>  </br> -->
+  <h3>{{person.email}}</h3>     <br/>
+
+  <div>
+    <h2>Top Hobbies:</h2>
+    <p>{{person.hobbies}}</p>
+  </div>
+
+  <div id="buttons">
+    <button (click)="toMain()">Back to Main</button> <!--bottom left corner-->
+    <button (click)="toEdit()">Edit</button> <!-- to left of delete-->
+    <button (click)="delete(person)">Delete</button> <!--Bottom right corner-->
+  </div>
+</div>
+<!-- / -->
