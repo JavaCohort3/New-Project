@@ -15,6 +15,10 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() { this.getPeople(); }
 
+  createPerson(): void {
+    location.href = '/person';
+  }
+
   getPeople(): void {
     this.personService.getAll().subscribe(people => this.people = people);
   }
