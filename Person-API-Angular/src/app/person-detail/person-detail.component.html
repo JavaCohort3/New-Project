@@ -5,7 +5,7 @@
     <h1 class="title">{{person.firstName + ' ' + person.lastName}} ({{person.id}})</h1>
   </div>
 
-  <h1> Person Information:</h1>
+  <h1>Person Information:</h1>
   First Name: {{person.firstName}} <br/>
   Last Name: {{person.lastName}} <br/>
   Email: {{person.email}}<br/>
@@ -18,7 +18,7 @@
 
   <div id="buttons">
     <button (click)="toMain()">Back to Main</button> <!--bottom left corner-->
-    <button routerLink="/create">Edit</button> <!-- to left of delete-->
+    <button routerLink="/edit/{{person.id}}">Edit</button> <!-- to left of delete-->
     <button (click)="delete()">Delete</button> <!--Bottom right corner-->
   </div>
 </div>
