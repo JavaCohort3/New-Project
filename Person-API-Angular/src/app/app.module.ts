@@ -10,20 +10,11 @@ import {PersonDetailComponent} from "./person-detail/person-detail.component";
 import {PersonService} from "./service/person.service";
 import {HttpClientModule} from "@angular/common/http";
 
-
-
 const routes: Routes = [
-
-
-
   { path: '', component: IndexComponent },
-
   { path: 'create', component: PersonComponent },
-
   { path: 'edit/:id', component: PersonComponent},
-
   { path: 'bio/:id', component: PersonDetailComponent }
-
 ];
 
 @NgModule({

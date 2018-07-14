@@ -1,6 +1,6 @@
 
 <div [hidden]="submit">
-  <h2> Create Person Database </h2>
+  <h2 id="title">Create Person Database</h2>
   <form (ngSubmit)="onSubmit()">
 
     <div class="form-group">
@@ -20,16 +20,16 @@
       <input type="text" class="form-control" id="email" required
              [(ngModel)]="person.email" name="email">
     </div>
-    <div class="form-group">
-      <label for="hobbies">Hobbies</label>
-      <input type="text" class="form-control" id="hobbies" required
-             [(ngModel)]="person.hobbies" name="hobbies">
-    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="hobbies">Hobbies</label>-->
+      <!--<input type="text" class="form-control" id="hobbies" required-->
+             <!--[(ngModel)]="person.hobbies" name="hobbies" />-->
+    <!--</div>-->
   </form>
   <div class="btn-group" >
-    <button routerLink="/">Main</button>
-    <button type="submit" class="btn btn-success" (click)="onSubmit()">Add</button>
-    <button class="button" (click)="goBack()">Back</button>
+    <button id="back-to-main" routerLink="/">Main</button>
+    <button id="go-back" class="button" (click)="goBack()">Back</button>
+    <button id="save" type="submit" class="btn btn-success" (click)="onSubmit()">Add</button>
   </div>
 </div>
 <!--<div class="btn-group" >-->
