@@ -4,17 +4,17 @@ import { Observable } from "rxjs/internal/Observable";
 
 @Injectable()
 export class PersonService {
-  public api = '//localhost:8080/people';
+  public api = 'http://localhost:8080/people';
 
   constructor(private http: HttpClient) {}
 
   // create method
   create(person: any): Observable<any> {
-    return this.http.post(this.api, person);
+    return this.http.post(this.api,person );
   }
 
   // get method
-  get(id: string): Observable<any> {
+  get(id: number):Observable<any>{
     return this.http.get(`${this.api}/${id}`);
   }
 
@@ -24,12 +24,12 @@ export class PersonService {
   }
 
   // put method
-  update(id: string, person: any): Observable<any> {
-    return this.http.put(`${this.api}/${id}`, person);
+  update(person: any): Observable<any> {
+    return this.http.put(`${this.api}/${person.id}`, person);
   }
 
   // delete method
-  delete(id: string): void {
-    this.http.delete(`${this.api}/${id}`);
+  delete(id: number): Observable<any> {
+   return this.http.delete(`${this.api}/${id}`);
   }
 }

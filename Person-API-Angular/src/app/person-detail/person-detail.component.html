@@ -1,28 +1,64 @@
-<!-- <p>
-  person-detail works!
-</p> -->
+
 
 <div *ngIf="person">
   <div>
-    <h1 class="title">DETAILS For <span>Id: </span>{{person.id}}</h1>
+    <h1 class="title">{{person.firstName + ' ' + person.lastName}} ({{person.id}})</h1>
   </div>
 
+  <h1> Person Information:</h1>
+  First Name: {{person.firstName}} <br/>
+  Last Name: {{person.lastName}} <br/>
+  Email: {{person.email}}<br/>
+  Hobbies: {{person.hobbies}}
 
-  <!--<div><span>id: </span>{{person.id}}</div>-->
-
-  <h2>{{person.firstName + ' ' + person.lastName}}</h2> <br/>
-  <!-- <h2>{{person.lastName}} Details</h2>  </br> -->
-  <h3>{{person.email}}</h3>     <br/>
-
-  <div>
-    <h2>Top Hobbies:</h2>
-    <p>{{person.hobbies}}</p>
-  </div>
+  <!--<div>-->
+    <!--<h2>Top Hobbies:</h2>-->
+    <!--<p>{{person.hobbies}}</p>-->
+  <!--</div>-->
 
   <div id="buttons">
     <button (click)="toMain()">Back to Main</button> <!--bottom left corner-->
-    <button (click)="toEdit()">Edit</button> <!-- to left of delete-->
-    <button (click)="delete(person)">Delete</button> <!--Bottom right corner-->
+    <button routerLink="/create">Edit</button> <!-- to left of delete-->
+    <button (click)="delete()">Delete</button> <!--Bottom right corner-->
   </div>
 </div>
+
 <!-- / -->
+<!--<h3>Edit Customer Form</h3>-->
+<!--<div [hidden]="submitted">-->
+  <!--<form (ngSubmit)="onSubmit()">-->
+    <!--<div class="form-group">-->
+      <!--<label for="firstname">First Name</label>-->
+      <!--<input type="text" class="form-control" id="firstname" required-->
+             <!--[(ngModel)]="person.firstName" name="firstname">-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+      <!--<label for="lastName">Last Name</label>-->
+      <!--<input type="text" class="form-control" id="lastName" required-->
+             <!--[(ngModel)]="person.lastName" name="lastName">-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+      <!--<label for="email">email</label>-->
+      <!--<input type="" class="form-control" id="email" required-->
+             <!--[(ngModel)]="person.email" name="email">-->
+    <!--</div>-->
+
+    <!--<div class="btn-group">-->
+      <!--<button class="btn btn-primary" (click)="toMain()">Back</button>-->
+      <!--<button type="submit" class="btn btn-success" (click)="toEdit()">Update</button>-->
+      <!--<button class="btn btn-danger" (click)="delete()">Delete</button>-->
+    <!--</div>-->
+
+  <!--</form>-->
+<!--</div>-->
+
+<!--<div [hidden]="!submitted">-->
+  <!--<h4>Update successfully!</h4>-->
+  <!--<div class="btn-group">-->
+    <!--<button class="btn btn-primary" (click)="toMain()">Back</button>-->
+    <!--&lt;!&ndash;<button class="btn btn-success" (click)="submitted=false">Edit</button>&ndash;&gt;-->
+  <!--</div>-->
+<!--</div>-->
+

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Person } from '../person';
 import { PersonService } from '../service/person.service';
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-person-detail',
@@ -11,8 +12,9 @@ import { PersonService } from '../service/person.service';
   styleUrls: ['./person-detail.component.css']
 })
 export class PersonDetailComponent implements OnInit {
-  person: Person;
-  id: string = window.location.pathname.replace('/person/', '');
+  person: Person = new Person();
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -21,25 +23,9 @@ export class PersonDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.get();
-  }
-
-  get(): void {
-    /*
-      'http://stackoverflow.com/questions/'
-
-      location = {
-        href: 'http://stackoverflow/questions/500',
-        origin: 'http://stackoverflow.com',
-        pathname: '/questions/500'
-      }
-    */
-
-
-    // location.pathname = '/person/{id}'
-
-    this.personService.get(this.id)
-        .subscribe(person => this.person = person);
+    this.route.params.pipe(
+      switchMap((params: Params) => this.personService.get(+params['id']))
+    ).subscribe(newPerson => this.person = newPerson)
   }
 
   // Back to main page
@@ -48,14 +34,11 @@ export class PersonDetailComponent implements OnInit {
   }
 
   // changes boxes to edit boxes
-  toEdit(): void {
-    //
-    this.location.go('/person');
-  }
+
 
   //to delete
-  delete(id: string): void {
-    this.personService.delete(id);
+  delete(): void {
+    this.personService.delete(this.person.id).subscribe(() => this.toMain())
   }
 
 

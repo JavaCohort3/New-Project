@@ -18,6 +18,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin(value = "http://localhost:4200")
 public class PersonController {
     private static final Logger log = LoggerFactory.getLogger(SpringApplication.class);
     private PersonService personService;

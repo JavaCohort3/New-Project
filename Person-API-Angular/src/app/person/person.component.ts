@@ -13,12 +13,10 @@ import {Location} from "@angular/common";
 export class PersonComponent implements OnInit {
 
   person = new Person();
-  summit = false;
+  submit = false;
   constructor(private personService: PersonService, private  location:Location) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   create(): any {
     this.personService.create(this.person)
@@ -28,12 +26,13 @@ export class PersonComponent implements OnInit {
 
 
   onSubmit() {
-    this. summit = true;
-    this.create()
+    this.submit = true;
+    this.create();
   }
 
-  goBack() {
+  goBack(){
     this.location.back();
   }
+
 
 }

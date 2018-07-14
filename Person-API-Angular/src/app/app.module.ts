@@ -5,26 +5,41 @@ import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {IndexComponent} from "./index/index.component";
+import {PersonDetailComponent} from "./person-detail/person-detail.component";
+import {PersonService} from "./service/person.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'people', pathMatch: 'full' },
-  { path: 'person/:id', component: PersonDetail },
-  { path: 'person', component: PersonComponent }
+
+
+
+  { path: '', component: IndexComponent },
+
+  { path: 'create', component: PersonComponent },
+
+  { path: 'edit/:id', component: PersonComponent},
+
+  { path: 'bio/:id', component: PersonDetailComponent }
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonComponent
-  ],
+    PersonComponent,
+    IndexComponent,
+    PersonDetailComponent
+  ],exports : [RouterModule],
   imports: [
     FormsModule,
     RouterModule.forRoot(routes),
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
