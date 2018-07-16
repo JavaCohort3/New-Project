@@ -8,14 +8,15 @@
   <div id="person-list">
     <div>
       <a *ngFor="let person of people" class="person-module" routerLink="/bio/{{person.id}}">
-        Person :{{person.firstName + ' ' + person.lastName}}
+        Person: {{person.firstName + ' ' + person.lastName}}
         <span class="id">({{person.id}})<br/></span>
       </a>
     </div>
   </div>
 
   <div id="create-person">
-    <button  routerLink="/create"  class="btn btn-primary active" role="button" routerLinkActive="active">Create New Person</button>
+    <!--<a id="create-new-person" routerLink="/create" routerLinkActive="active">Create New Person</a>-->
+    <button  routerLink="/create" class="btn btn-primary active" role="button" routerLinkActive="active">Create New Person</button>
     <!--<button (click)="createPerson()"> Create Person </button>-->
   </div>
 </div>

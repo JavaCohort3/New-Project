@@ -15,3 +15,23 @@
 #person-list > div:empty:after {
   content: 'No people are stored in the database.';
 }
+
+h2, button { color: red; }
+#person-list > div { color: blue; }
+
+
+
+/*#create-new-person {*/
+  /*text-decoration: none;*/
+  /*font-size: 0.8em;*/
+  /*padding: 5px 8px;*/
+  /*background-color: #111;*/
+  /*color: #999;*/
+  /*border: 1px solid;*/
+  /*transition: 0.2s;*/
+/*}*/
+
+/*#create-new-person:hover {*/
+  /*color: #9F9;*/
+  /*background-color: #131;*/
+/*}*/
